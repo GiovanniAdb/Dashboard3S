@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solicitudes</title>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJh947BGTDrHMy7IFdodbm6PoAkPp79Hc&v=beta&libraries=marker"></script>
+
+  <script src='https://unpkg.com/akar-icons-fonts'></script>
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
+  <link rel="stylesheet" href="../css/SolPendAte.css">
+  <script type="module" src="../js/SolPendAte.js"></script>
+</head>
+
+<body>
+  <div id="nav-bar">
+    <input id="nav-toggle" type="checkbox" />
+    <div id="nav-header">
+      <a id="nav-title" href="index.html">GJ<i class="fas fa-gem"></i>C</a>
+      <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
+      <hr />
+    </div>
+    <div id="nav-content">
+      <div class="nav-button"><a href="index.html"><i class="fas fa-magic"></i><span>Home</span></a></div>
+      <div class="nav-button"><a href="plandeTrabajo.html"><i class="fas fa-images"></i><span>Datos por
+            Agencia</span></a></div>
+      <div class="nav-button"><a href="imac.html"><i class="fas fa-chart-line"></i><span>Imu y
+            Acumulado</span></a></div>
+      <div class="nav-button"><a href="SolicitudesPendAtenc.html"><i class="fas fa-fire"></i><span>Solicitudes
+            pendientes de atencion</span></a></div>
+      <hr />
+      <div class="nav-button"><a href="analisisPerfiles.html"><i class="fas fa-palette"></i><span>Analisis de
+            perfiles</span></a></div>
+            <div class="nav-button"><a href="iess.html"><i class="fas fa-gem"></i><span>IESS</span></a></div>
+
+    </div>
+    <input id="nav-footer-toggle" type="checkbox" />
+    <div id="nav-footer">
+      <div id="nav-footer-heading">
+        <div id="nav-footer-avatar"><i class="fas fa-thumbtack"></i></div>
+        <div id="nav-footer-titlebox"><a id="nav-footer-title" target="_blank">Ordenes Repetidas</a></div>
+        <label for="nav-footer-toggle"><i class="fas fa-caret-up"></i></label>
+      </div>
+      <div id="nav-footer-content">
+        <div class="nav-button"><a href="OrdenesRepSin.html"><i class="fas fa-thumbtack"></i><span>
+              Sin Observacion</span></a></div>
+        <div class="nav-button"><a href="OrdenesRepCon.html"><i class="fas fa-thumbtack"></i><span>
+              Con Observacion</span></a></div>
+      </div>
+    </div>
+
+    <input id="nav-footer-toggle3" type="checkbox" />
+    <div id="nav-footer3">
+      <div id="nav-footer-heading3">
+        <div id="nav-footer-avatar3"><i class="fas fa-gem"></i></div>
+        <div id="nav-footer-titlebox3"><a id="nav-footer-title3" target="_blank">Cortes</a></div>
+        <label for="nav-footer-toggle3"><i class="fas fa-caret-up"></i></label>
+      </div>
+      <div id="nav-footer-content3">
+        <div class="nav-button"><a href="CortesTerminados.html"><i class="fas fa-gem"></i><span>Terminadas</span></a>
+        </div>
+        <div class="nav-button"><a href="CortesSinAtencion.html"><i class="fas fa-gem"></i><span>Sin
+              Atencion</span></a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-container">
+    <!-- Mapa -->
+    <div id="mapSection">
+      <div id="map"></div>
+    </div>
+
+    <!-- Buscador -->
+    <div id="searchSection">
+      <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Buscar solicitud por ID">
+        <button id="searchButton" onclick="searchRequest()">
+          <i class="ai-search"></i> <!-- Asegúrate de tener un ícono de búsqueda -->
+        </button>
+      </div>
+      <div id="searchResults"></div>
+    </div>
+
+    <!-- Calendario -->
+    <!-- Calendario -->
+    <div id="calendarContainer"></div>
+
+    <!-- Carga de Archivos -->
+    <div id="uploadSection">
+      <h2>Carga de Archivos</h2>
+      <div class="upload-container">
+        <!-- Sección Izquierda -->
+        <div class="upload-column">
+          <input type="file" id="fileInputPending" accept="">
+          <div id="pendingRequestsContainer"></div>
+        </div>
+        <!-- Sección Derecha -->
+        <div class="upload-column">
+          <input type="file" id="fileInputSpecific" accept="" multiple>
+          <div id="requestDataContainer"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- Modal para mostrar información completa de la solicitud -->
+  <div id="requestModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button" id="closeModal">&times;</span>
+      <h2>Detalles de la Solicitud</h2>
+      <div id="modalRequestDetails"></div>
+    </div>
+  </div>
+</body>
+
+</html>

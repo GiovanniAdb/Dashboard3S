@@ -1,0 +1,58 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #007BFF;
+}
+
+input[type="file"] {
+    display: block;
+    margin: 20px auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 2px solid #000;
+    text-align: center;
+    padding: 8px;
+}
+
+th {
+    background-color: #001f54; /* Color azul oscuro */
+    color: white;
+    font-weight: bold;
+}
+
+td {
+    background-color: #f5f5f5;
+}
+
+tr:nth-child(even) td {
+    background-color: #e0e0e0; /* Alternar colores en las filas */
+}
+
+th[colspan] {
+    border: 2px solid #000;
+}
