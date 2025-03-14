@@ -1,5 +1,5 @@
-const XLSX = "https://code.jquery.com/jquery-3.6.0.min"
-const $ = "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.2/xlsx.full.min"
+const $ = "https://code.jquery.com/jquery-3.6.0.min"
+const XLSX = "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.2/xlsx.full.min"
 // Variables globales para almacenar los datos
 let allDataActual = [];
 let allDataAnterior = [];

@@ -14,7 +14,6 @@ function getAgencia(cuenta) {
         G: 'VALLE',
         H: 'JARAL'
     };
-
     return agencias[letra] || 'Desconocida'; // Devolver la agencia correspondiente o 'Desconocida'
 }
 
