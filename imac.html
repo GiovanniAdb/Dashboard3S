@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subida de Archivos y Gráficas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
+    <link rel="stylesheet" href="../css/imac.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div id="nav-bar">
+        <input id="nav-toggle" type="checkbox" />
+        <div id="nav-header">
+            <a id="nav-title" href="index.html">GJ<i class="fas fa-gem"></i>C</a>
+            <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
+            <hr />
+        </div>
+        <div id="nav-content">
+            <div class="nav-button"><a href="index.html"><i class="fas fa-magic"></i><span>Home</span></a></div>
+            <div class="nav-button"><a href="plandeTrabajo.html"><i class="fas fa-images"></i><span>Datos por
+                        Agencia</span></a></div>
+            <div class="nav-button"><a href="imac.html"><i class="fas fa-chart-line"></i><span>Imu y
+                        Acumulado</span></a></div>
+            <div class="nav-button"><a href="SolicitudesPendAtenc.html"><i class="fas fa-fire"></i><span>Solicitudes
+                        pendientes de atencion</span></a></div>
+            <hr />
+            <div class="nav-button"><a href="analisisPerfiles.html"><i class="fas fa-palette"></i><span>Analisis de
+                        perfiles</span></a></div>
+            <div class="nav-button"><a href="iess.html"><i class="fas fa-gem"></i><span>IESS</span></a></div>
+        </div>
+        <input id="nav-footer-toggle" type="checkbox" />
+        <div id="nav-footer">
+            <div id="nav-footer-heading">
+                <div id="nav-footer-avatar"><i class="fas fa-thumbtack"></i></div>
+                <div id="nav-footer-titlebox"><a id="nav-footer-title" target="_blank">Ordenes Repetidas</a></div>
+                <label for="nav-footer-toggle"><i class="fas fa-caret-up"></i></label>
+            </div>
+            <div id="nav-footer-content">
+                <div class="nav-button"><a href="OrdenesRepSin.html"><i class="fas fa-thumbtack"></i><span>
+                            Sin Observacion</span></a></div>
+                <div class="nav-button"><a href="OrdenesRepCon.html"><i class="fas fa-thumbtack"></i><span>
+                            Con Observacion</span></a></div>
+            </div>
+        </div>
+
+        <input id="nav-footer-toggle3" type="checkbox" />
+        <div id="nav-footer3">
+            <div id="nav-footer-heading3">
+                <div id="nav-footer-avatar3"><i class="fas fa-gem"></i></div>
+                <div id="nav-footer-titlebox3"><a id="nav-footer-title3" target="_blank">Cortes</a></div>
+                <label for="nav-footer-toggle3"><i class="fas fa-caret-up"></i></label>
+            </div>
+            <div id="nav-footer-content3">
+                <div class="nav-button"><a href="CortesTerminados.html"><i
+                            class="fas fa-gem"></i><span>Terminadas</span></a>
+                </div>
+                <div class="nav-button"><a href="CortesSinAtencion.html"><i class="fas fa-gem"></i><span>Sin
+                            Atencion</span></a></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="main-container">
+            <!-- Sección para carga de archivos -->
+            <!-- Sección para carga de archivos -->
+            <!-- Sección para carga de archivos -->
+            <div id="uploadContainer" class="card" onclick="document.getElementById('fileInput').click();">
+                <input type="file" id="fileInput" multiple accept=".html" required style="display: none;">
+                <div class="upload-area">
+                    <p>Haz clic aquí para subir archivos (máximo 4 archivos)</p>
+                </div>
+            </div>
+
+            <!-- Sección para mostrar áreas de oportunidad -->
+            <div id="opportunityContainer" class="card">
+                <div class="opportunity-slider">
+                    <div class="opportunity-content">
+                        <!-- Aquí se mostrarán las áreas de oportunidad -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Div para la gráfica -->
+        <div id="graphic" class="chart-container">
+            <canvas id="myChart"></canvas>
+        </div>
+
+        <!-- Contenedor para la tabla -->
+        <div class="table-container">
+            <table id="dataTable" class="hidden">
+                <thead>
+                    <tr>
+                        <th>CVE</th>
+                        <th>AREA</th>
+                        <th>CONS COMERCIAL</th>
+                        <th>CORTE INDEB COMERCIAL</th>
+                        <th>RECIB EXTRV COMERCIAL</th>
+                        <th>CARGO MAL APLIC COMERCIAL</th>
+                        <th>DEMOR ATN COMERCIAL</th>
+                        <th>TOT PROC COMERCIAL</th>
+                        <th>ALTO CONSM COMERCIAL</th>
+                        <th>COMER COMERCIAL</th>
+                        <th>TOTAL IMPR COMERCIAL</th>
+                        <th>TOTAL COMERCIAL</th>
+                        <th>FALSO CONTC MEDICION</th>
+                        <th>ACOMT AVERI MEDICION</th>
+                        <th>FALLA MEDID MEDICION</th>
+                        <th>DEMOR ATN MEDICION</th>
+                        <th>TOT PROC MEDICION</th>
+                        <th>TOTAL IMPR MEDICION</th>
+                        <th>TOTAL MEDICION</th>
+                        <th>SECT FUERA DISTRIBUCION</th>
+                        <th>DEFIC VOLT DISTRIBUCION</th>
+                        <th>FALSO CONTC DISTRIBUCION</th>
+                        <th>DEMOR ATN DISTRIBUCION</th>
+                        <th>TOT PROC DISTRIBUCION</th>
+                        <th>TOT IMPR DISTRIBUCION</th>
+                        <th>TOTAL DISTRIBUCION</th>
+                        <th>TOT PROC GENERAL</th>
+                        <th>TOT IMPR GENERAL</th>
+                        <th>TOTAL GENERAL</th>
+                        <th>USUARIOS ACUMULADOS GENERAL</th>
+                        <th>Tipo</th>
+                        <th>Inconformidades</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Aquí se llenarán los datos -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="second-container">
+            <!-- Sección para carga de archivos de página -->
+            <div id="uploadPageContainer" class="card" onclick="document.getElementById('pageFileInput').click();">
+                <input type="file" id="pageFileInput" accept=".html" required style="display: none;">
+                <div class="upload-area">
+                    <p>Haz clic aquí para el IMU y mostrar tabla e grafica</p>
+                </div>
+            </div>
+            <!-- Agregar un div para el filtro -->
+            <div id="filtro-container"></div>
+        </div>
+
+        <!-- Contenedor para la tabla de página -->
+        <div class="page-table-container"></div>
+
+        <!-- Contenedor para la tabla de página -->
+        <div class="graphic-table-container"></div>
+
+        <!-- Div para la gráfica de página -->
+        <div id="pageGraphic" class="chart-container">
+            <canvas id="pageChart"></canvas>
+        </div>
+
+    </div>
+    </div>
+
+    <script src='https://unpkg.com/akar-icons-fonts'></script>
+    <script src="../js/imac.js"></script>
+</body>
+
+</html>

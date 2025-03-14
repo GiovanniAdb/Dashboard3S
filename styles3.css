@@ -1,0 +1,906 @@
+/* General */
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #d9f0e2;
+}
+
+body::before {
+    content: ""; /* Necesario para que el pseudo-elemento se muestre */
+    position: fixed; /* Fijar la imagen de fondo */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../assets/icon/cfe.png') no-repeat center; /* Imagen de fondo */
+    background-size: 50%; /* Ajusta el tamaño de la imagen (puedes cambiar el porcentaje) */
+    filter: blur(8px); /* Efecto de desenfoque */
+    z-index: -1; /* Colocar detrás del contenido */
+}
+/* Título */
+h1 {
+    text-align: center;
+    color: #006837; /* Verde institucional de CFE */
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+/* Input de archivo */
+.file-input-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.file-input-container label {
+    font-size: 1.1rem;
+    color: #006837;
+    font-weight: bold;
+}
+
+#fileInput {
+    padding: 10px;
+    border: 2px solid #006837;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#fileInput:hover {
+    background-color: #006837;
+    color: white;
+}
+
+/* Dropdown de agencias */
+.dropdown-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.dropdown-container label {
+    font-size: 1.1rem;
+    color: #006837;
+    font-weight: bold;
+}
+
+#agencySelect {
+    padding: 8px 15px;
+    font-size: 1rem;
+    margin-left: 10px;
+    border: 2px solid #006837;
+    border-radius: 8px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#agencySelect:hover {
+    background-color: #006837;
+    color: white;
+}
+
+/* Botón de descarga */
+#downloadAll {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 20px;
+    font-size: 1rem;
+    color: white;
+    background-color: #006837;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+#downloadAll:hover {
+    background-color: #004c2c;
+}
+
+/* Contenedor de gráficos */
+#chart-container {
+    display: flex;
+    flex-direction: row; /* Organiza las gráficas en una fila */
+    gap: 20px; /* Espacio entre las gráficas */
+    overflow-x: auto; /* Habilita el scroll horizontal */
+    overflow-y: hidden; /* Oculta cualquier scroll vertical innecesario */
+    padding: 15px; /* Espacio interno del contenedor */
+    background-color: #006837; /* Fondo claro para destacar */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    max-width: 100%; /* Asegura que el contenedor no se expanda más allá del ancho de la página */
+    height: auto; /* Ajusta automáticamente la altura */
+}
+
+/* Ajustes para las gráficas individuales dentro de #chart-container */
+#chart-container > .chart-wrapper {
+    flex-shrink: 0; /* Evita que las gráficas se reduzcan */
+    width: 570px; /* Ancho de cada gráfica */
+    height: 300px; /* Altura de cada gráfica */
+    display: flex;
+    justify-content: center; /* Centra el contenido gráfico */
+    align-items: center; /* Alinea el contenido verticalmente */
+    background: linear-gradient(135deg, #ffffff, #f0f7f4); /* Fondo degradado */
+    
+    border-radius: 12px; /* Bordes redondeados */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    padding: 10px; /* Espacio interno */
+}
+
+/* Evitar que las gráficas desborden */
+#chart-container .chart-wrapper canvas {
+    max-width: 100%; /* Ajusta la gráfica al contenedor */
+    height: auto; /* Ajusta la altura automáticamente */
+}
+
+
+/* Estilo para los gráficos (Cards) */
+.chart-wrapper {
+    width: 40%;
+    height: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ffffff, #f0f7f4);
+    
+    color: #006837;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+.chart-wrapper:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Contenedor principal */
+.container {
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar todo horizontalmente */
+}
+
+/* Tablas */
+table {
+    width: 100%; /* Aseguramos que ocupe todo el ancho disponible */
+    margin: 20px auto; /* Centrar tabla */
+    border-collapse: collapse;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Encabezados */
+th, td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+    font-size: 0.9rem; /* Reducir el tamaño de la fuente para más claridad */
+}
+
+th {
+    background-color: #006837;
+    color: white;
+    font-weight: bold;
+}
+
+/* Estilo para las celdas */
+td {
+    background-color: #f9f9f9;
+}
+
+/* Filas alternas de la tabla */
+td:nth-child(odd) {
+    background-color: #f1f1f1;
+}
+
+/* Estilo hover para filas */
+tbody tr:hover {
+    background-color: #d6f5d6;
+}
+
+/* Asegurar que los encabezados sean visibles */
+thead {
+    position: sticky;
+    top: 0;
+    background-color: #006837;
+}
+
+/* Contenedor para la tabla */
+#tablesContainer {
+    width: 100%;
+   /* Permitir desplazamiento horizontal si es necesario */
+    margin-top: 30px;
+}
+
+/* Estilo para tablas dentro de la "container" */
+table {
+    margin: 0 auto;
+    table-layout: auto;
+    width: 95%; /* Aseguramos que ocupe un 95% del contenedor */
+}
+
+th, td {
+    word-wrap: break-word; /* Asegura que el contenido largo se ajuste */
+    max-width: 150px; /* Limitar el ancho de las columnas */
+}
+
+tbody tr:hover {
+    background-color: #d6f5d6;
+}
+
+/* Gráfica general */
+#general-chart {
+    margin: 20px auto;
+    width: 100%;
+    max-width: 800px;
+    border: 2px solid #006837;
+    border-radius: 12px;
+    background: #ffffff;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    color: #006837; /* Cambiar color de texto */
+}
+
+/* Botones individuales */
+.btn-download {
+    display: inline-block;
+    margin: 10px auto;
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    color: white;
+    background-color: #006837;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.btn-download:hover {
+    background-color: #004c2c;
+}
+
+/* Contenedor de botones de descarga */
+#buttonsContainer {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#buttonsContainer .btn-download {
+    margin: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .chart-wrapper {
+        width: 100%;
+        height: 250px;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    #general-chart {
+        max-width: 100%;
+    }
+}
+  .filter-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#observationFilter {
+    padding: 8px 15px;
+    font-size: 1rem;
+    border: 2px solid #006837;
+    border-radius: 8px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Estilo para el contenedor de las gráficas de recuperación de energía */
+#energy-recovery-container {
+    display: flex;
+    flex-direction: row; /* Organiza las gráficas en una fila */
+    gap: 20px; /* Espacio entre las gráficas */
+    overflow-x: auto; /* Habilita el scroll horizontal */
+    overflow-y: hidden; /* Oculta cualquier scroll vertical innecesario */
+    padding: 15px; /* Espacio interno del contenedor */
+    
+    border-radius: 8px; /* Bordes redondeados */
+    
+    max-width: 100%; /* Asegura que el contenedor no se expanda más allá del ancho de la página */
+    height: auto; /* Ajusta automáticamente la altura */
+}
+
+/* Estilo para los divs internos dentro de #energy-recovery-container (contenedores de gráficas) */
+#energy-recovery-container > div {
+    display: flex;
+    justify-content: center;  /* Centra las gráficas */
+    gap: 20px;  /* Espacio entre las gráficas */
+    flex-wrap:nowrap; /* Asegura que las gráficas no se envuelvan en varias filas */
+    align-items: center; /* Centra las gráficas verticalmente */
+    width: auto; /* Permite que el ancho se ajuste al contenido */
+    height: 100%; /* Ajusta la altura de cada contenedor de gráfica */
+}
+
+
+/* Estilo para las gráficas de energía */
+.chart-wrapperEnergy {
+
+    flex-shrink: 0; /* Evita que las gráficas se reduzcan */
+    width: 500px; /* Ancho de cada gráfica */
+    height: 300px; /* Altura de cada gráfica */
+    display: flex;
+    justify-content: center; /* Centra el contenido gráfico */
+    align-items: center; /* Centra el contenido verticalmente */
+    background: linear-gradient(135deg, #eafbf0, #d7f5e0); /* Fondo degradado más claro */
+    border: 2px solid #00A94F; /* Borde verde más visible */
+    border-radius: 12px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    margin-bottom: 20px; /* Espacio inferior entre las gráficas */
+    padding: 10px; /* Espacio interno */
+    overflow: hidden; /* Asegura que el contenido adicional no desborde */
+}
+
+/* Hover para resaltar la gráfica */
+.chart-wrapperEnergy:hover {
+    transform: scale(1.02); /* Efecto de zoom al pasar el ratón */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+    transition: all 0.3s ease; /* Transición suave para los cambios */
+}
+
+.chart-wrapperEnergy canvas {
+    max-width: 100%; /* Ajusta la gráfica al contenedor */
+    max-height: 100%; /* Limita la altura */
+    width: auto; /* Asegura que se mantenga proporcional */
+    height: auto; /* Ajusta la altura automáticamente */
+    object-fit: contain; /* Evita que se deformen */
+}
+
+/* Ocultar scrollbar en Webkit (Chrome, Safari, Edge) */
+#chart-container::-webkit-scrollbar,
+#energy-recovery-container::-webkit-scrollbar {
+    display: none; /* Oculta la barra de desplazamiento */
+}
+
+/* Ocultar scrollbar en Firefox */
+#chart-container,
+#energy-recovery-container {
+    scrollbar-width: none; /* Oculta la barra de desplazamiento */
+}
+
+/* Asegúrate de que el contenedor tenga overflow */
+#chart-container,
+#energy-recovery-container {
+    overflow: auto; /* Permite el desplazamiento */
+}
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+ 
+  /* Clase para aplicar el efecto de botón presionado */
+  .button-pressed {
+    transform: scale(0.95);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color: #ccc;
+  }
+  
+  /* Clase para mostrar el menú desplegable */
+  .dropdown-menu.show {
+    display: block; /* Mostrar el menú */
+    opacity: 1; /* Hacerlo completamente visible */
+    transform: translateY(0); /* Volver a la posición original */
+  }
+  
+  
+:root {
+  --background: #959ca4;
+  --navbar-width: 256px;
+  --navbar-width-min: 80px;
+  --navbar-dark-primary: #043e26;
+  --navbar-dark-secondary: #043e0a;
+  --navbar-light-primary: #f5f6fa;
+  --navbar-light-secondary: #959ca4;
+}
+
+#nav-toggle:checked~#nav-header {
+  width: calc(var(--navbar-width-min) - 16px);
+}
+
+#nav-toggle:checked~#nav-content,
+#nav-toggle:checked~#nav-footer{
+  width: var(--navbar-width-min);
+}
+
+
+#nav-toggle:checked~#nav-content,
+#nav-toggle:checked~#nav-footer3{
+  width: var(--navbar-width-min);
+}
+
+
+#nav-toggle:checked~#nav-header #nav-title {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.1s;
+}
+
+#nav-toggle:checked~#nav-header label[for=nav-toggle] {
+  left: calc(50% - 8px);
+  transform: translate(-50%);
+}
+
+#nav-toggle:checked~#nav-header #nav-toggle-burger {
+  background: var(--navbar-light-primary);
+}
+
+#nav-toggle:checked~#nav-header #nav-toggle-burger:before,
+#nav-toggle:checked~#nav-header #nav-toggle-burger::after {
+  width: 16px;
+  background: var(--navbar-light-secondary);
+  transform: translate(0, 0) rotate(0deg);
+}
+
+#nav-toggle:checked~#nav-content .nav-button span {
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+
+#nav-toggle:checked~#nav-content .nav-button .fas {
+  min-width: calc(100% - 16px);
+}
+
+#nav-toggle:checked~#nav-footer #nav-footer-avatar {
+  margin-left: 0;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+#nav-toggle:checked~#nav-footer3 #nav-footer-avatar3 {
+  margin-left: 0;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+#nav-toggle:checked~#nav-footer #nav-footer-titlebox,
+#nav-toggle:checked~#nav-footer label[for=nav-footer-toggle] {
+  opacity: 0;
+  transition: opacity 0.1s;
+  pointer-events: none;
+}
+
+#nav-toggle:checked~#nav-footer3 #nav-footer-titlebox3,
+#nav-toggle:checked~#nav-footer3 label[for=nav-footer-toggle3] {
+  opacity: 0;
+  transition: opacity 0.1s;
+  pointer-events: none;
+}
+
+#nav-bar {
+  position: fixed;
+  top: 1vw;
+  height: calc(100% - 2vw);
+  background: var(--navbar-dark-primary);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  color: var(--navbar-light-primary);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  overflow: hidden;
+  user-select: none;
+  z-index: 1000;
+  /* Agrega esta línea */
+}
+
+#nav-bar hr {
+  margin: 0;
+  position: relative;
+  left: 16px;
+  width: calc(100% - 32px);
+  border: none;
+  border-top: solid 1px var(--navbar-dark-secondary);
+}
+
+#nav-bar a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+#nav-bar input[type=checkbox] {
+  display: none;
+}
+
+#nav-header {
+  position: relative;
+  width: var(--navbar-width);
+  left: 16px;
+  width: calc(var(--navbar-width) - 16px);
+  min-height: 80px;
+  background: var(--navbar-dark-primary);
+  border-radius: 16px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  transition: width 0.2s;
+}
+
+#nav-header hr {
+  position: absolute;
+  bottom: 0;
+}
+
+#nav-title {
+  font-size: 1.5rem;
+  transition: opacity 1s;
+}
+
+label[for=nav-toggle] {
+  position: absolute;
+  right: 0;
+  width: 3rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+#nav-toggle-burger {
+  position: relative;
+  width: 16px;
+  height: 2px;
+  background: var(--navbar-dark-primary);
+  border-radius: 99px;
+  transition: background 0.2s;
+}
+
+#nav-toggle-burger:before,
+#nav-toggle-burger:after {
+  content: "";
+  position: absolute;
+  top: -6px;
+  width: 10px;
+  height: 2px;
+  background: var(--navbar-light-primary);
+  border-radius: 99px;
+  transform: translate(2px, 8px) rotate(30deg);
+  transition: 0.2s;
+}
+
+#nav-toggle-burger:after {
+  top: 6px;
+  transform: translate(2px, -8px) rotate(-30deg);
+}
+
+#nav-content {
+  margin: -16px 0;
+  padding: 16px 0;
+  position: relative;
+  flex: 1;
+  width: var(--navbar-width);
+  background: var(--navbar-dark-primary);
+  box-shadow: 0 0 0 16px var(--navbar-dark-primary);
+  direction: rtl;
+  overflow-x: hidden;
+  transition: width 0.2s;
+}
+
+#nav-content::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+#nav-content::-webkit-scrollbar-thumb {
+  border-radius: 99px;
+  background-color: #abba23;
+}
+
+#nav-content-highlight {
+  position: absolute;
+  left: 16px;
+  top: -70px;
+  width: calc(100% - 16px);
+  height: 54px;
+  background: var(--background);
+  background-attachment: fixed;
+  border-radius: 16px 0 0 16px;
+  transition: top 0.2s;
+}
+
+#nav-content-highlight:before,
+#nav-content-highlight:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 100%;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  box-shadow: 16px 16px var(--background);
+}
+
+#nav-content-highlight:after {
+  top: 100%;
+  box-shadow: 16px -16px var(--background);
+}
+
+.nav-button {
+  position: relative;
+  margin-left: 16px;
+  height: 54px;
+  align-items: center;
+  color: var(--navbar-light-secondary);
+  direction: ltr;
+  cursor: pointer;
+  z-index: 1;
+  transition: color 0.2s;
+}
+
+.nav-button span {
+  transition: opacity 1s;
+}
+
+.nav-button .fas {
+  transition: min-width 0.2s;
+}
+
+.nav-button:nth-of-type(1):hover {
+  color: #abba23;
+}
+
+.nav-button:nth-of-type(1):hover~#nav-content-highlight {
+  top: 16px;
+}
+
+.nav-button:nth-of-type(2):hover {
+  color: #abba23;
+}
+
+.nav-button:nth-of-type(2):hover~#nav-content-highlight {
+  top: 70px;
+}
+
+.nav-button:nth-of-type(3):hover {
+  color: #abba23;
+}
+
+.nav-button:nth-of-type(3):hover~#nav-content-highlight {
+  top: 124px;
+}
+
+.nav-button:nth-of-type(4):hover {
+  color: #abba23;
+}
+
+.nav-button:nth-of-type(4):hover~#nav-content-highlight {
+  top: 178px;
+}
+
+.nav-button:nth-of-type(5):hover {
+  color: #abba23;
+}
+
+.nav-button:nth-of-type(5):hover~#nav-content-highlight {
+  top: 232px;
+}
+
+.nav-button:nth-of-type(6):hover {
+  color: #abba23;
+}
+
+.nav-button:nth-of-type(6):hover~#nav-content-highlight {
+  top: 286px;
+}
+
+.nav-button:nth-of-type(7):hover {
+  color: #abba23;
+}
+
+.nav-button:nth-of-type(7):hover~#nav-content-highlight {
+  top: 340px;
+}
+
+.nav-button:nth-of-type(8):hover {
+  color: #abba23;
+}
+
+.nav-button:nth-of-type(8):hover~#nav-content-highlight {
+  top: 394px;
+}
+
+.nav-button:nth-of-type(9):hover {
+  color: #abba23;
+}
+
+#nav-bar .fas {
+  min-width: 3rem;
+  text-align: center;
+}
+
+#nav-footer {
+  position: relative;
+  width: var(--navbar-width);
+  height: 54px;
+  background: var(--navbar-dark-secondary);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  transition: width 0.2s, height 0.2s;
+}
+
+#nav-footer-heading {
+  position: relative;
+  width: 100%;
+  height: 54px;
+  display: flex;
+  align-items: center;
+}
+
+#nav-footer-avatar {
+  position: relative;
+  margin: 11px 0 11px 16px;
+  left: 0;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  transform: translate(0);
+  transition: 0.2s;
+}
+
+#nav-footer-avatar img {
+  height: 100%;
+}
+
+#nav-footer-titlebox {
+  position: relative;
+  margin-left: 16px;
+  width: 10px;
+  display: flex;
+  flex-direction: column;
+  transition: opacity 1s;
+}
+
+#nav-footer-subtitle {
+  color: var(--navbar-light-secondary);
+  font-size: 0.6rem;
+}
+
+#nav-footer-toggle:checked+#nav-footer {
+  height: 30%;
+  min-height: 54px;
+}
+
+#nav-footer-toggle:checked+#nav-footer label[for=nav-footer-toggle] {
+  transform: rotate(180deg);
+}
+
+label[for=nav-footer-toggle] {
+  position: absolute;
+  right: 0;
+  width: 3rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+#nav-footer-content {
+  margin: 0 16px 16px 16px;
+  border-top: solid 1px var(--navbar-light-secondary);
+  padding: 16px 0;
+  color: var(--navbar-light-secondary);
+  font-size: 0.8rem;
+  overflow: auto;
+}
+
+#nav-footer-content::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+#nav-footer3 {
+  position: relative;
+  width: var(--navbar-width);
+  height: 54px;
+  background: var(--navbar-dark-secondary);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  transition: width 0.2s, height 0.2s;
+}
+
+#nav-footer-heading3 {
+  position: relative;
+  width: 100%;
+  height: 54px;
+  display: flex;
+  align-items: center;
+}
+
+#nav-footer-avatar3 {
+  position: relative;
+  margin: 11px 0 11px 16px;
+  left: 0;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  transform: translate(0);
+  transition: 0.2s;
+}
+
+#nav-footer-avatar3 img {
+  height: 100%;
+}
+
+#nav-footer-titlebox3 {
+  position: relative;
+  margin-left: 16px;
+  width: 10px;
+  display: flex;
+  flex-direction: column;
+  transition: opacity 1s;
+}
+
+#nav-footer-subtitle3 {
+  color: var(--navbar-light-secondary);
+  font-size: 0.6rem;
+}
+
+#nav-footer-toggle3:checked+#nav-footer3 {
+  height: 30%;
+  min-height: 54px;
+}
+
+#nav-footer-toggle3:checked+#nav-footer3 label[for=nav-footer-toggle3] {
+  transform: rotate(180deg);
+}
+
+label[for=nav-footer-toggle3] {
+  position: absolute;
+  right: 0;
+  width: 3rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+#nav-footer-content3 {
+  margin: 0 16px 16px 16px;
+  border-top: solid 1px var(--navbar-light-secondary);
+  padding: 16px 0;
+  color: var(--navbar-light-secondary);
+  font-size: 0.8rem;
+  overflow: auto;
+}
+
+#nav-footer-content3::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}

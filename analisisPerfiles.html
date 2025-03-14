@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visualización de Datos por Agencia</title>
+  <!-- DataTables JS -->
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
+  <link rel="stylesheet" href="../css/analisisPerfiles.css">
+  <script src='https://unpkg.com/akar-icons-fonts'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <script src='https://unpkg.com/akar-icons-fonts'></script>
+
+</head>
+
+<body>
+  <div id="nav-bar">
+    <input id="nav-toggle" type="checkbox" />
+    <div id="nav-header">
+      <a id="nav-title" href="index.html">GJ<i class="fas fa-gem"></i>C</a>
+      <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
+      <hr />
+    </div>
+    <div id="nav-content">
+      <div class="nav-button"><a href="index.html"><i class="fas fa-magic"></i><span>Home</span></a></div>
+      <div class="nav-button"><a href="plandeTrabajo.html"><i class="fas fa-images"></i><span>Datos por
+            Agencia</span></a></div>
+      <div class="nav-button"><a href="imac.html"><i class="fas fa-chart-line"></i><span>Imu y
+            Acumulado</span></a></div>
+      <div class="nav-button"><a href="SolicitudesPendAtenc.html"><i class="fas fa-fire"></i><span>Solicitudes
+            pendientes de atencion</span></a></div>
+      <hr />
+      <div class="nav-button"><a href="analisisPerfiles.html"><i class="fas fa-palette"></i><span>Analisis de
+            perfiles</span></a></div>
+            <div class="nav-button"><a href="iess.html"><i class="fas fa-gem"></i><span>IESS</span></a></div>
+
+    </div>
+    <input id="nav-footer-toggle" type="checkbox" />
+    <div id="nav-footer">
+      <div id="nav-footer-heading">
+        <div id="nav-footer-avatar"><i class="fas fa-thumbtack"></i></div>
+        <div id="nav-footer-titlebox"><a id="nav-footer-title" target="_blank">Ordenes Repetidas</a></div>
+        <label for="nav-footer-toggle"><i class="fas fa-caret-up"></i></label>
+      </div>
+      <div id="nav-footer-content">
+        <div class="nav-button"><a href="OrdenesRepSin.html"><i class="fas fa-thumbtack"></i><span>
+              Sin Observacion</span></a></div>
+        <div class="nav-button"><a href="OrdenesRepCon.html"><i class="fas fa-thumbtack"></i><span>
+              Con Observacion</span></a></div>
+      </div>
+    </div>
+
+    <input id="nav-footer-toggle3" type="checkbox" />
+    <div id="nav-footer3">
+      <div id="nav-footer-heading3">
+        <div id="nav-footer-avatar3"><i class="fas fa-gem"></i></div>
+        <div id="nav-footer-titlebox3"><a id="nav-footer-title3" target="_blank">Cortes</a></div>
+        <label for="nav-footer-toggle3"><i class="fas fa-caret-up"></i></label>
+      </div>
+      <div id="nav-footer-content3">
+        <div class="nav-button"><a href="CortesTerminados.html"><i class="fas fa-gem"></i><span>Terminadas</span></a>
+        </div>
+        <div class="nav-button"><a href="CortesSinAtencion.html"><i class="fas fa-gem"></i><span>Sin
+              Atencion</span></a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenedor de la página -->
+  <div class="container">
+    <h1> Analisis de Perfiles</h1>
+
+    <!-- Cargar archivo -->
+    <div class="file-input-container">
+      <label for="fileInput">Cargar archivo de Excel:</label>
+      <input type="file" id="fileInput" accept="" />
+    </div>
+
+    <div id="general-chart" class="graphs-container"></div>
+  </div>
+
+  <script type="module" src="../js/analisisPerfiles.js"></script>
+</body>
+
+</html>
