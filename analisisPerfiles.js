@@ -5,8 +5,8 @@ const XLSX = require('xlsx');
 const $ = require('jquery');  // Requiere jQuery
 
 */
-const XLSX = require('xlsx');
-const $ = require('jquery');  // Requiere jQuery
+const XLSX = window.XLSX;
+const $ = window.jQuery;
 
 const Chart = window.Chart; // Asegúrate de tener Chart.js importado
 
