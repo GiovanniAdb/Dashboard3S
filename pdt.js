@@ -1,5 +1,5 @@
-const XLSX = window.XLSX;
-const $ = window.jQuery;
+const XLSX = "https://code.jquery.com/jquery-3.6.0.min"
+const $ = "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.2/xlsx.full.min"
 
 // Función para obtener la agencia según el código de la ruta
 function getAgencia(cuenta) {
