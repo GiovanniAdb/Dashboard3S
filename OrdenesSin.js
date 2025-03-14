@@ -1,5 +1,5 @@
-const XLSX = require('xlsx');
-const $ = require('jquery');  // Requiere jQuery
+const XLSX = "https://code.jquery.com/jquery-3.6.0.min"
+const $ = "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.2/xlsx.full.min"
 
 // Variables globales para almacenar los datos
 let allDataActual = [];

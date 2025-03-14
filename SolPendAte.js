@@ -4,10 +4,10 @@ import { getDatabase, ref, set, get, onValue } from "https://www.gstatic.com/fir
 
 // Configuración de Firebase
 const firebaseConfig = {
-    apiKey: "AIzaSyDmu-oZyTBWsde-VH8QkXmS3p6FNj-tcTI",
-    authDomain: "rutasrapidas-863dc.firebaseapp.com",
-    projectId: "rutasrapidas-863dc",
-    storageBucket: "rutasrapidas-863dc.appspot.com",
+    apiKey: "",
+    authDomain: "",
+    projectId: "",
+    storageBucket: "",
     messagingSenderId: "87894271558",
     appId: "1:87894271558:web:425efd35e60ecb88bf0c47",
     measurementId: "G-GY4V5RJQL7",
