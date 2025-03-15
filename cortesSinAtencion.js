@@ -1,6 +1,5 @@
 const $ = "https://code.jquery.com/jquery-3.6.0.min"
-const XLSX = "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.2/xlsx.full.min"
-
+const XLSX = window.XLSX;
 // Variables globales para almacenar los datos
 let allDataActual = [];
 let allDataAnterior = [];
@@ -971,8 +970,8 @@ function downloadExcel(repeatOrders) {
     XLSX.writeFile(wb, "Ordenes_Repetidas.xlsx");
 
     // Opcional: Usar jQuery para mostrar un mensaje de éxito
-    $('body').append('<div id="success-message">Archivo descargado con éxito!</div>');
-    $('#success-message').fadeOut(3000);  // El mensaje desaparece después de 3 segundos
+    jQuery('body').append('<div id="success-message">Archivo descargado con éxito!</div>');
+    jQuery('#success-message').fadeOut(3000);  // El mensaje desaparece después de 3 segundos
 }
 
 // Mapa de abreviaturas a nombres completos de ciudades

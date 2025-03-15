@@ -141,7 +141,7 @@ function createTable(agency, rows) {
     container.appendChild(table);
 
     // Inicializar DataTable para la tabla recién creada
-    $(document).ready(function() {
+    jQuery(document).ready(function() {
         $('#myTable').DataTable({
             paging: true, // Habilitar la paginación
             searching: true, // Habilitar la búsqueda
